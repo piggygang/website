@@ -1,4 +1,4 @@
-export type AppStatus = "live" | "coming-soon";
+export type AppStatus = "live" | "preview" | "coming-soon";
 
 type AppBase = {
   name: string;
@@ -10,8 +10,10 @@ type AppBase = {
 };
 
 export type LiveApp = AppBase & { status: "live"; url: string };
+/** Browsable while it is being built — links out like a live app. */
+export type PreviewApp = AppBase & { status: "preview"; url: string };
 export type ComingSoonApp = AppBase & { status: "coming-soon"; url?: string };
-export type App = LiveApp | ComingSoonApp;
+export type App = LiveApp | PreviewApp | ComingSoonApp;
 
 /**
  * The app grid renders this array in order — shipping an app, or flipping
@@ -33,7 +35,7 @@ export const APPS: App[] = [
     accent: "var(--brand)",
   },
   {
-    status: "coming-soon",
+    status: "preview",
     name: "Explorer",
     blurb: "Browse the gang — traits, owners & history.",
     url: "https://explorer.piggygang.net",
@@ -41,7 +43,7 @@ export const APPS: App[] = [
     accent: "var(--gold)",
   },
   {
-    status: "coming-soon",
+    status: "preview",
     name: "Alpha.art",
     blurb: "The exchange returns.",
     url: "https://alpha.art",
@@ -51,7 +53,7 @@ export const APPS: App[] = [
     accent: "#a866ff",
   },
   {
-    status: "coming-soon",
+    status: "preview",
     name: "Raffles",
     blurb: "Tickets in, piggies out.",
     url: "https://raffles.piggygang.net",

@@ -22,7 +22,21 @@ function Icon({ d }: { d: string }) {
 export function AppCard({ app }: { app: App }) {
   const accent = { "--accent": app.accent } as CSSProperties;
 
-  if (app.status === "coming-soon") {
+  if (app.status !== "live") {
+    const badge =
+      app.status === "preview" ? (
+        // Live's pill recipe in a fixed status color — gold marks every
+        // preview build, never the app's own accent.
+        <span className={`inline-flex items-center gap-1.5 ${BADGE} bg-gold/15 text-gold`}>
+          <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+          Preview
+        </span>
+      ) : (
+        <span className={`${BADGE} border border-line text-ink-muted`}>
+          Coming soon
+        </span>
+      );
+
     const inner = (
       <>
         <div className="flex items-center justify-between gap-3">
@@ -32,9 +46,7 @@ export function AppCard({ app }: { app: App }) {
           >
             <Icon d={app.icon} />
           </span>
-          <span className={`${BADGE} border border-line text-ink-muted`}>
-            Coming soon
-          </span>
+          {badge}
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <h3 className="text-base font-semibold tracking-tight text-ink-muted">
