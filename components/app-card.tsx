@@ -23,13 +23,8 @@ export function AppCard({ app }: { app: App }) {
   const accent = { "--accent": app.accent } as CSSProperties;
 
   if (app.status === "coming-soon") {
-    // Not a link: hover brightens the border only, without promising
-    // navigation the card cannot deliver.
-    return (
-      <div
-        style={accent}
-        className={`${CARD} border border-dashed border-line bg-surface/50 transition-colors hover:border-ink-muted`}
-      >
+    const inner = (
+      <>
         <div className="flex items-center justify-between gap-3">
           <span
             aria-hidden="true"
@@ -46,7 +41,44 @@ export function AppCard({ app }: { app: App }) {
             {app.name}
           </h3>
           <p className="text-sm text-ink-muted">{app.blurb}</p>
+          {app.url && (
+            // Muted at rest so the live card's always-accent CTA stays the
+            // louder one; accent on hover because this is a real link.
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-medium text-ink-muted transition-colors group-hover:text-[var(--accent)]">
+              Sneak peek
+              <span
+                aria-hidden="true"
+                className="transition-transform group-hover:translate-x-0.5"
+              >
+                →
+              </span>
+            </span>
+          )}
         </div>
+      </>
+    );
+
+    const SHELL = `${CARD} border border-dashed border-line bg-surface/50 transition-colors`;
+
+    if (app.url) {
+      return (
+        <a
+          href={app.url}
+          target="_blank"
+          rel="noreferrer"
+          style={accent}
+          className={`group ${SHELL} hover:border-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]`}
+        >
+          {inner}
+        </a>
+      );
+    }
+
+    // No URL yet: inert on purpose — hover brightens the border only,
+    // without promising navigation the card cannot deliver.
+    return (
+      <div style={accent} className={`${SHELL} hover:border-ink-muted`}>
+        {inner}
       </div>
     );
   }
