@@ -50,4 +50,19 @@ export const APPS: App[] = [
     // --surface, under the 4.5:1 AA floor for text-sm accent labels.
     accent: "#a866ff",
   },
+  {
+    status: "coming-soon",
+    name: "Raffles",
+    blurb: "Tickets in, piggies out.",
+    url: "https://raffles.piggygang.net",
+    icon: "M5 6h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8a2 2 0 0 1 2-2Z",
+    accent: "#3ddad7",
+  },
+  {
+    status: "coming-soon",
+    name: "Migration",
+    blurb: "Swap your piggy to the new art.",
+    icon: "M15 4l6 4-6 4v-2H3V6h12Zm-6 8-6 4 6 4v-2h12v-4H9Z",
+    accent: "#ff8ec4",
+  },
 ];
