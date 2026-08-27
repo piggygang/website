@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { PiggyArt } from "@/components/piggy-art";
 import { COLLECTIONS } from "@/lib/collections";
 
 export function CollectionsStrip() {
@@ -14,35 +15,42 @@ export function CollectionsStrip() {
           className="p-2"
         >
           <a
-            // Per-collection marketplace URLs land with the ALG-641 copy
-            // doc; the storefront root stands in until then.
-            href="https://piggygang.com/"
+            href={collection.marketplaceUrl}
             target="_blank"
             rel="noreferrer"
-            className="group flex h-full flex-col gap-1.5 rounded-xl p-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+            className="group flex h-full gap-3 rounded-xl p-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
           >
-            <div className="flex items-baseline justify-between gap-3">
-              <h3 className="flex items-center gap-2 text-base font-semibold tracking-tight transition-colors group-hover:text-[var(--accent)]">
+            {/* Decorative — the name beside it names the collection. */}
+            <div
+              aria-hidden="true"
+              className="h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-line bg-surface-raised"
+            >
+              <PiggyArt
+                layers={collection.layers}
+                alt=""
+                className="transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="text-base font-semibold tracking-tight transition-colors group-hover:text-[var(--accent)]">
+                  {collection.name}
+                </h3>
+                <span className="font-mono text-xs text-ink-muted">
+                  {collection.supply.toLocaleString("en-US")}
+                </span>
+              </div>
+              <p className="text-sm text-ink-muted">{collection.tagline}</p>
+              <span className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent)]">
+                Marketplace
                 <span
                   aria-hidden="true"
-                  className="h-2 w-2 rounded-full bg-[var(--accent)]"
-                />
-                {collection.name}
-              </h3>
-              <span className="font-mono text-xs text-ink-muted">
-                {collection.supply.toLocaleString("en-US")}
+                  className="transition-transform group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
               </span>
             </div>
-            <p className="text-sm text-ink-muted">{collection.tagline}</p>
-            <span className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--accent)]">
-              Marketplace
-              <span
-                aria-hidden="true"
-                className="transition-transform group-hover:translate-x-0.5"
-              >
-                →
-              </span>
-            </span>
           </a>
         </div>
       ))}
