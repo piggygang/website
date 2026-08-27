@@ -9,13 +9,12 @@ export type Social = {
   label: string;
   href: string;
   /** Key into ICONS in components/site-footer.tsx */
-  icon: "x" | "discord" | "marketplace";
+  icon: "x" | "discord" | "github";
 };
 
-// Copied from DressMe; ALG-641 confirms these with the team. The Discord
-// invite currently returns "Unknown Invite" and needs a fresh permanent one.
+// X handle still pending ALG-641 confirmation.
 export const SOCIALS: Social[] = [
   { label: "X", href: "https://x.com/PiggySolGang", icon: "x" },
-  { label: "Discord", href: "https://discord.gg/QyUHFsZnuJ", icon: "discord" },
-  { label: "piggygang.com", href: "https://piggygang.com/", icon: "marketplace" },
+  { label: "Discord", href: "https://discord.gg/8SjGR8Srvz", icon: "discord" },
+  { label: "GitHub", href: "https://github.com/piggygang", icon: "github" },
 ];
