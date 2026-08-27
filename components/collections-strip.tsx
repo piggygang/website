@@ -14,9 +14,7 @@ export function CollectionsStrip() {
           className="p-2"
         >
           <a
-            // Per-collection marketplace URLs land with the ALG-641 copy
-            // doc; the storefront root stands in until then.
-            href="https://piggygang.com/"
+            href={collection.marketplaceUrl}
             target="_blank"
             rel="noreferrer"
             className="group flex h-full flex-col gap-1.5 rounded-xl p-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"

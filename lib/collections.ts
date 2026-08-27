@@ -5,6 +5,8 @@ export type Collection = {
   /** Set as --accent, matching DressMe's per-collection accents. */
   accent: string;
   supply: number;
+  /** Where to buy: the collection's Magic Eden marketplace page. */
+  marketplaceUrl: string;
   /** The DressMe look this portrait reproduces. */
   lookCode: string;
   /** Ordered paint stack, bottom first. */
@@ -27,6 +29,7 @@ export const COLLECTIONS: Collection[] = [
     // Marketplace label this accent colours.
     accent: "#a866ff",
     supply: 10_000,
+    marketplaceUrl: "https://magiceden.io/marketplace/piggy_sol_gang",
     lookCode: "56D97JB",
     layers: [
       "/piggy/piggy-sol-gang/thumb/body/solana.png",
@@ -46,6 +49,7 @@ export const COLLECTIONS: Collection[] = [
     tagline: "Pretty, fierce and dressed for it.",
     accent: "#ff8ec4",
     supply: 5_000,
+    marketplaceUrl: "https://magiceden.io/marketplace/piggy_girl_gang",
     lookCode: "65IB5219",
     layers: [
       "/piggy/piggy-girl-gang/thumb/body/alien.png",
@@ -66,6 +70,7 @@ export const COLLECTIONS: Collection[] = [
     tagline: "Same ten thousand piggies. Meaner art.",
     accent: "#3ddad7",
     supply: 10_000,
+    marketplaceUrl: "https://magiceden.io/marketplace/pig_gang",
     lookCode: "58D47JB0",
     layers: [
       "/piggy/piggy-gang/thumb/body/solana.png",
