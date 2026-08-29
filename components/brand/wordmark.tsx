@@ -29,7 +29,9 @@ export function Wordmark({ className }: { className?: string }) {
       aria-label={`${SITE.name} — home`}
     >
       <PiggyMark className="h-8 w-8 transition-transform group-hover:-rotate-6" />
-      <span className="text-lg font-semibold tracking-tight">
+      {/* Mark only below sm: three nav links plus the full wordmark overflow
+          a 360px header, and the hero h1 repeats the name right beneath. */}
+      <span className="hidden text-lg font-semibold tracking-tight sm:inline">
         Piggy <span className="text-brand">Gang</span>
       </span>
     </Link>
