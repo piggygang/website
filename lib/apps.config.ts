@@ -17,13 +17,19 @@ export type App = LiveApp | PreviewApp | ComingSoonApp;
 
 /**
  * The app grid renders this array in order — shipping an app, or flipping
- * one live, is a single self-contained entry here.
+ * one live, is a single self-contained entry here. The order is editorial and
+ * hand-set — nothing derives it, so reordering is moving an entry.
  *
- * Accents stay inside the DressMe palette: the flagship wears the brand
- * pink, Explorer the gold token (the Mythic badge that owns gold in DressMe
- * never renders on this page), Alpha.art the Solana purple it shares with
- * Piggy SOL Gang — apps and collections never sit in the same section, so
- * the two purples cannot be confused.
+ * Gold is a status colour, not an app accent: app-card.tsx pills every preview
+ * build in it, so no app may wear it. Explorer used to, and its Live badge
+ * would have been a gold pill sitting beside Raffles' gold Preview pill.
+ *
+ * The rule the whole page obeys, token-card.tsx included: a tinted pill is an
+ * identity — an app, a ticker — and only the dot beside it marks status.
+ *
+ * Accents otherwise stay inside the DressMe palette. Alpha.art wears the Solana
+ * purple it shares with Piggy SOL Gang; apps and collections never sit in the
+ * same section, so the two purples cannot be confused.
  */
 export const APPS: App[] = [
   {
@@ -35,12 +41,24 @@ export const APPS: App[] = [
     accent: "var(--brand)",
   },
   {
-    status: "preview",
+    status: "live",
     name: "Explorer",
     blurb: "Browse the gang — traits, owners & history.",
     url: "https://explorer.piggygang.net",
     icon: "M10.5 3a7.5 7.5 0 1 0 4.55 13.46l4.24 4.24 1.42-1.42-4.24-4.24A7.5 7.5 0 0 0 10.5 3Zm0 2a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Z",
-    accent: "var(--gold)",
+    // Off gold now that this card wears a Live pill — see the note above. Blue
+    // is unclaimed anywhere in the system and reads 9.91:1 on --surface, well
+    // over the 4.5:1 AA floor; deliberately not another teal, because Raffles'
+    // #3ddad7 now sits directly beside it in the grid.
+    accent: "#7cc4ff",
+  },
+  {
+    status: "preview",
+    name: "Raffles",
+    blurb: "Tickets in, piggies out.",
+    url: "https://raffles.piggygang.net",
+    icon: "M5 6h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8a2 2 0 0 1 2-2Z",
+    accent: "#3ddad7",
   },
   {
     status: "preview",
@@ -51,14 +69,6 @@ export const APPS: App[] = [
     // Solana purple lightened from #9945ff: the brand value is 4.11:1 on
     // --surface, under the 4.5:1 AA floor for text-sm accent labels.
     accent: "#a866ff",
-  },
-  {
-    status: "preview",
-    name: "Raffles",
-    blurb: "Tickets in, piggies out.",
-    url: "https://raffles.piggygang.net",
-    icon: "M5 6h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8a2 2 0 0 1 2-2Z",
-    accent: "#3ddad7",
   },
   {
     status: "coming-soon",
