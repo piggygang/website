@@ -5,6 +5,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { TokenCard } from "@/components/token-card";
 import { APPS } from "@/lib/apps.config";
+import { withStats } from "@/lib/collections";
+import { collectionStats } from "@/lib/indexer";
 import { TOKENS } from "@/lib/tokens";
 
 const NAV_LINK =
@@ -14,7 +16,24 @@ const SECTION = "mx-auto w-full max-w-6xl scroll-mt-24 px-5 pb-16";
 const EYEBROW = "mb-4 text-sm font-medium tracking-[0.14em] text-ink-muted uppercase";
 const GRID = "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3";
 
-export default function Home() {
+/**
+ * The route export is the only revalidation clock. The collections fetch
+ * deliberately passes no cache option: Next's default (`auto no cache`) fetches
+ * once during `next build` because this route is statically prerendered, so
+ * every regeneration performs a real refetch. Setting a `next.revalidate` on the
+ * fetch as well would add a second, independently expiring cache on top of this
+ * one, and the two staleness windows would compound.
+ *
+ * Recovery from an indexer outage is not automatic on a clock: ISR regenerates
+ * on request, so a build that came up numberless stays that way until someone
+ * visits more than 300s after the last render — and that visitor still sees the
+ * old page while the new one is built behind them.
+ */
+export const revalidate = 300;
+
+export default async function Home() {
+  const collections = withStats(await collectionStats());
+
   return (
     <>
       <SiteHeader>
@@ -47,7 +66,7 @@ export default function Home() {
 
         <section id="collections" className={SECTION}>
           <h2 className={EYEBROW}>Collections</h2>
-          <CollectionsStrip />
+          <CollectionsStrip collections={collections} />
         </section>
 
         <section id="tokens" className={SECTION}>
