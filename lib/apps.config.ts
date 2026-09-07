@@ -46,11 +46,11 @@ export const APPS: App[] = [
     blurb: "Browse the gang — traits, owners & history.",
     url: "https://explorer.piggygang.net",
     icon: "M10.5 3a7.5 7.5 0 1 0 4.55 13.46l4.24 4.24 1.42-1.42-4.24-4.24A7.5 7.5 0 0 0 10.5 3Zm0 2a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Z",
-    // Off gold now that this card wears a Live pill — see the note above. Blue
-    // is unclaimed anywhere in the system and reads 9.91:1 on --surface, well
-    // over the 4.5:1 AA floor; deliberately not another teal, because Raffles'
-    // #3ddad7 now sits directly beside it in the grid.
-    accent: "#7cc4ff",
+    // DressMe's brand accent, shared on purpose: the live apps read as one
+    // family. The token rather than a copied hex, so the two stay matched if
+    // --brand moves. Not gold — see the note above; a gold Live pill is
+    // indistinguishable from Raffles' gold Preview pill beside it.
+    accent: "var(--brand)",
   },
   {
     status: "preview",
