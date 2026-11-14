@@ -12,6 +12,11 @@ type AppBase = {
 export type LiveApp = AppBase & { status: "live"; url: string };
 /** Browsable while it is being built — links out like a live app. */
 export type PreviewApp = AppBase & { status: "preview"; url: string };
+/**
+ * Nothing carries this today — Migration was the last one and it is in preview
+ * now — but it is the extension point the next app lands on, and app-card.tsx
+ * still renders it.
+ */
 export type ComingSoonApp = AppBase & { status: "coming-soon"; url?: string };
 export type App = LiveApp | PreviewApp | ComingSoonApp;
 
@@ -71,9 +76,10 @@ export const APPS: App[] = [
     accent: "#a866ff",
   },
   {
-    status: "coming-soon",
+    status: "preview",
     name: "Migration",
     blurb: "Swap your piggy to the new art.",
+    url: "https://migrate.piggygang.net",
     icon: "M15 4l6 4-6 4v-2H3V6h12Zm-6 8-6 4 6 4v-2h12v-4H9Z",
     accent: "#ff8ec4",
   },
