@@ -23,11 +23,12 @@ export type App = LiveApp | PreviewApp | ComingSoonApp;
 /**
  * The app grid renders this array in order — shipping an app, or flipping
  * one live, is a single self-contained entry here. The order is editorial and
- * hand-set — nothing derives it, so reordering is moving an entry.
+ * hand-set — nothing derives it, so reordering is moving an entry. Previews
+ * run in the order they are due out, soonest first.
  *
  * Gold is a status colour, not an app accent: app-card.tsx pills every preview
  * build in it, so no app may wear it. Explorer used to, and its Live badge
- * would have been a gold pill sitting beside Raffles' gold Preview pill.
+ * would have been a gold pill sitting beside a gold Preview pill.
  *
  * The rule the whole page obeys, token-card.tsx included: a tinted pill is an
  * identity — an app, a ticker — and only the dot beside it marks status.
@@ -54,8 +55,16 @@ export const APPS: App[] = [
     // DressMe's brand accent, shared on purpose: the live apps read as one
     // family. The token rather than a copied hex, so the two stay matched if
     // --brand moves. Not gold — see the note above; a gold Live pill is
-    // indistinguishable from Raffles' gold Preview pill beside it.
+    // indistinguishable from the gold Preview pill beside it.
     accent: "var(--brand)",
+  },
+  {
+    status: "preview",
+    name: "Migration",
+    blurb: "Swap your piggy to the new art.",
+    url: "https://migrate.piggygang.net",
+    icon: "M15 4l6 4-6 4v-2H3V6h12Zm-6 8-6 4 6 4v-2h12v-4H9Z",
+    accent: "#ff8ec4",
   },
   {
     status: "preview",
@@ -74,13 +83,5 @@ export const APPS: App[] = [
     // Solana purple lightened from #9945ff: the brand value is 4.11:1 on
     // --surface, under the 4.5:1 AA floor for text-sm accent labels.
     accent: "#a866ff",
-  },
-  {
-    status: "preview",
-    name: "Migration",
-    blurb: "Swap your piggy to the new art.",
-    url: "https://migrate.piggygang.net",
-    icon: "M15 4l6 4-6 4v-2H3V6h12Zm-6 8-6 4 6 4v-2h12v-4H9Z",
-    accent: "#ff8ec4",
   },
 ];
